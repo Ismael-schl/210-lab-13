@@ -25,14 +25,23 @@ int main() {
         fin >> array[i].sID;
         fin >> array[i].eScore;
     }
-    sortArray(array);
-    outputArray(array);
-    consoleUpdate(array);
+    
+    outputArray(sarray);
+    consoleUpdate(sarray);
 
 }
 
 void sortArray(sData* array) {
-    
+    for (int i = 0; i < SIZE - 1; i++) {
+        int iSmallest = i;
+        for (int j = i+1; j < SIZE; j++) {
+            if (array[j].sID < array[iSmallest].sID) {
+                iSmallest = j;
+            }
+        }
+        int temp = array[i];
+        array[i]  
+    }
 
 }
 
