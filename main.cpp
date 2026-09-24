@@ -21,6 +21,16 @@ void consoleUpdate(sData* array);
 int main() {
     sData array[SIZE];
     ifstream fin("210-lab-13-grades.txt");
+    if (!fin) {
+        cerr << "Error: cannot open input file." << endl;
+        return 1;
+    }
+    for (int i = 0; i < SIZE; i++) {
+        if (!(fin >> array[i].sID >> array[i].eScore)) {
+            cerr << "Error: failed reading record" << i + 1 << endl;
+            return 1;
+        }
+    }
     for (int i = 0; i < SIZE; i++) {
         fin >> array[i].sID;
         fin >> array[i].eScore;
@@ -47,6 +57,10 @@ void sortArray(sData* array) {
 
 void outputArray(sData* array) {
     ofstream fout("210-lab-13-grades-sorted.txt");
+    if (!fout) {
+        cerr  << "Error: cannot open output file" << endl;
+        return;
+    }
     for (int i = 0; i < SIZE; i++) {
         fout << array[i].sID << endl;
         fout << array[i].eScore << endl;
