@@ -61,15 +61,36 @@ void consoleUpdate(sData* array) {
     int median = array[0].eScore;
     double mean = 0.0;
     double stdev;
+    double sum = 0.0;
+    double kSum = 0.0;
     
     for (int i = 0; i < SIZE; i++) {
-        
-    } 
+        if (array[i].eScore > max) {
+            max = array[i].eScore;
+            maxID = array[i].sID;
+        }
+    }
+    
+    
+    for (int j = 0; j < SIZE; j++) {
+        if (array[j].eScore < min) {
+            min = array[j].eScore;
+            minID = array[j].sID;
+        }
+    }
+    
+    for (int k = 0; k < SIZE; k++) {
+        sum += array[k].eScore;
+        kSum = k;
+    }
+    
+    mean = sum/kSum;
+
     cout << "Read " << SIZE << " student records" << endl;
     cout << "Sorted results written to 210-lab-13-grades-sorted.txt" << endl;
     cout << endl << "--- Summary Statistics ---" << endl;
-    cout << "Minimum Score: " << << " (Student ID: "<< << ")" << endl;
-    cout << "Maximum Score: " << << " (Student ID: "<< << ")" << endl;
-    cout << "Mean Score: " << << endl;
+    cout << "Minimum Score: " << min << " (Student ID: "<< minID << ")" << endl;
+    cout << "Maximum Score: " << max << " (Student ID: " << maxID << ")" << endl;
+    cout << "Mean Score: " << mean << endl;
     cout << "Median Score: " << << " (Student ID: "<< << ")" << endl;
 } 
