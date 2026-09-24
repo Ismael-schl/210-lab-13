@@ -19,9 +19,15 @@ void outputArray(sData* array);
 void consoleUpdate(sData* array);
 
 int main() {
-    sData 
-    ifstream fin("210-lab-13-grades.txt")
-
+    sData array[SIZE];
+    ifstream fin("210-lab-13-grades.txt");
+    for (int i = 0; i < SIZE; i++) {
+        fin >> array[i].sID;
+        fin >> array[i].eScore;
+    }
+    sortArray(array);
+    outputArray(array);
+    consoleUpdate(array);
 
 }
 
@@ -30,6 +36,13 @@ void sortArray(sData* array) {
 
 }
 
+void outputArray(sData* array) {
+    ofstream fout("210-lab-13-grades-sorted.txt");
+    for (int i = 0; i < SIZE; i++) {
+        fout << array[i].sID << endl;
+        fout << array[i].eScore << endl;
+    }
+}
 
 void consoleUpdate(sData* array) {
     cout << "Read " << SIZE << " student records" << endl;
