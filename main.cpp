@@ -25,9 +25,9 @@ int main() {
         fin >> array[i].sID;
         fin >> array[i].eScore;
     }
-    
-    outputArray(sarray);
-    consoleUpdate(sarray);
+    sortArray(array);
+    outputArray(array);
+    consoleUpdate(array);
 
 }
 
@@ -39,10 +39,10 @@ void sortArray(sData* array) {
                 iSmallest = j;
             }
         }
-        int temp = array[i];
-        array[i]  
+        sData temp = array[i];
+        array[i] = array[iSmallest];
+        array[iSmallest] = temp;
     }
-
 }
 
 void outputArray(sData* array) {
@@ -54,6 +54,17 @@ void outputArray(sData* array) {
 }
 
 void consoleUpdate(sData* array) {
+    double max = array[0].eScore;
+    int maxID;
+    double min = array[0].eScore;
+    int minID;
+    int median = array[0].eScore;
+    double mean = 0.0;
+    double stdev;
+    
+    for (int i = 0; i < SIZE; i++) {
+        
+    } 
     cout << "Read " << SIZE << " student records" << endl;
     cout << "Sorted results written to 210-lab-13-grades-sorted.txt" << endl;
     cout << endl << "--- Summary Statistics ---" << endl;
