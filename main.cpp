@@ -55,17 +55,16 @@ void outputArray(sData* array) {
 
 void consoleUpdate(sData* array) {
     double max = array[0].eScore;
-    int maxID;
+    int maxID =  array[0].sID;
     double min = array[0].eScore;
-    int minID;
-    int median = array[0].eScore;
+    int minID = array[0].sID ;
+    double median = array[0].eScore;
     double mean = 0.0;
     double difference = 0.0;
     double diffsq = 0.0;
     double sumdf = 0.0;
     double stdev = 0.0;
     double sum = 0.0;
-    double kSum = 0.0;
     
     for (int i = 0; i < SIZE; i++) {
         if (array[i].eScore > max) {
@@ -84,8 +83,9 @@ void consoleUpdate(sData* array) {
     
     for (int k = 0; k < SIZE; k++) {
         sum += array[k].eScore;
-        kSum = k;
     }
+
+    mean = sum/SIZE;
     
     for (int m = 0; m < SIZE; m++) {
         difference = array[m].eScore - mean;
@@ -108,14 +108,13 @@ void consoleUpdate(sData* array) {
             }
         }
         sData temp = arr[l];
-        array[l] = arr[iSmallest];
+        arr[l] = arr[iSmallest];
         arr[iSmallest] = temp;
     }
 
-    median = (arr[SIZE / 2 -1].eScore + arr[SIZE / 2].eScore / 2);
+    median = ((arr[SIZE / 2 -1].eScore + arr[SIZE / 2].eScore) / 2);
     int medianID = arr[SIZE / 2].sID;
-    
-    mean = sum/kSum;
+ 
 
     cout << "Read " << SIZE << " student records" << endl;
     cout << "Sorted results written to 210-lab-13-grades-sorted.txt" << endl;
@@ -124,4 +123,5 @@ void consoleUpdate(sData* array) {
     cout << "Maximum Score: " << max << " (Student ID: " << maxID << ")" << endl;
     cout << "Mean Score: " << mean << endl;
     cout << "Median Score: " << median << " (Student ID: "<< medianID << ")" << endl;
+    cout << "Standard Deviation: " << stdev << endl;
 } 
