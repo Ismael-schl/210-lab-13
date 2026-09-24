@@ -61,7 +61,9 @@ void consoleUpdate(sData* array) {
     int median = array[0].eScore;
     double mean = 0.0;
     double difference = 0.0;
-    double stdev;
+    double diffsq = 0.0;
+    double sumdf = 0.0;
+    double stdev = 0.0;
     double sum = 0.0;
     double kSum = 0.0;
     
@@ -86,8 +88,13 @@ void consoleUpdate(sData* array) {
     }
     
     for (int m = 0; m < SIZE; m++) {
-        difference += array[m].eScore - mean;
+        difference = array[m].eScore - mean;
+        diffsq = difference * difference;
+        sumdf += diffsq;
     }
+    
+    stdev = sqrt(sumdf/(SIZE-1));
+
     sData arr[SIZE];
     for (int n = 0; n < SIZE; n++) {
         arr[n] = array[n];
