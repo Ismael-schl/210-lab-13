@@ -60,6 +60,7 @@ void consoleUpdate(sData* array) {
     int minID;
     int median = array[0].eScore;
     double mean = 0.0;
+    double difference = 0.0;
     double stdev;
     double sum = 0.0;
     double kSum = 0.0;
@@ -84,6 +85,29 @@ void consoleUpdate(sData* array) {
         kSum = k;
     }
     
+    for (int m = 0; m < SIZE; m++) {
+        difference += array[m].eScore - mean;
+    }
+    sData arr[SIZE];
+    for (int n = 0; n < SIZE; n++) {
+        arr[n] = array[n];
+    }
+
+    for (int l = 0; l < SIZE - 1; l++) {
+        int iSmallest = l;
+        for (int z = l+1; z < SIZE; z++) {
+            if (arr[z].eScore < arr[iSmallest].eScore) {
+                iSmallest = z;
+            }
+        }
+        sData temp = arr[l];
+        array[l] = arr[iSmallest];
+        arr[iSmallest] = temp;
+    }
+
+    median = (arr[SIZE / 2 -1].eScore + arr[SIZE / 2].eScore / 2);
+    int medianID = arr[SIZE / 2].sID;
+    
     mean = sum/kSum;
 
     cout << "Read " << SIZE << " student records" << endl;
@@ -92,5 +116,5 @@ void consoleUpdate(sData* array) {
     cout << "Minimum Score: " << min << " (Student ID: "<< minID << ")" << endl;
     cout << "Maximum Score: " << max << " (Student ID: " << maxID << ")" << endl;
     cout << "Mean Score: " << mean << endl;
-    cout << "Median Score: " << << " (Student ID: "<< << ")" << endl;
+    cout << "Median Score: " << median << " (Student ID: "<< medianID << ")" << endl;
 } 
